@@ -1,0 +1,34 @@
+.titulo-post {
+  text-align: center;
+}
+
+.div-general {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.divPosts {
+  background-color: #441c79;
+  border: 1rem;
+  border-radius: 30px;
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+  width: 350px;
+  height: 350px;
+}
+
+.botonPost {
+  padding: 10px 20px;
+  background-color: #441c79;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
