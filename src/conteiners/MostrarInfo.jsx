@@ -35,7 +35,7 @@ export const MostarInfo = () => {
     return (
         <>
             <button onClick={fetchPosts} className="botonPost">
-                Bring posts
+                Show posts
             </button>
 
             <div className="div-general">
