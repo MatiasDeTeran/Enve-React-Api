@@ -7,22 +7,30 @@ export const MostarInfo = () => {
 
     const [comments, setComments] = useState([]);
 
+    const [showComments, setShowComments] = useState({}); 
+
+
     const fetchPosts = () => {
         fetch("https://jsonplaceholder.typicode.com/posts")
             .then((response) => response.json())
             .then((json) => {setData(json)});
     };
 
+
     const FetchComments = (id) => {
-        fetch(`https://jsonplaceholder.typicode.com/comments?postId=` + id)
+        if (showComments[id]) {
+            setShowComments({...showComments, [id]: false});
+            return;
+        }
+
+        fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
             .then((response) => response.json())
-            .then((json) => {setComments({...comments, [id]:json});});
-            console.log(comments);
+            .then((json) => {
+                setComments({...comments,[id]: json});
+                setShowComments({...showComments,[id]: true});
+            });
     };
 
-    // useEffect(() => {
-    //   fetchData();
-    // }, [])
 
     return (
         <>
@@ -36,7 +44,7 @@ export const MostarInfo = () => {
                         <h2 className="titulos">Title: {item.title}</h2>
                         <p className="cuerpo-post">Body: {item.body}</p>
                         <button onClick={()=>{FetchComments(item.id)}} className="boton-comments">comments</button>
-                        {comments[item.id] && ( // Verificamos si hay comentarios para este post
+                        {showComments[item.id] && comments[item.id] && (
                             <div>
                                 {comments[item.id].map((element) => (
                                     <div key={element.id}>
@@ -48,8 +56,6 @@ export const MostarInfo = () => {
                                 ))}
                             </div>
                         )}
-                        
-                        
                     </div>
                 ))}
             </div>
